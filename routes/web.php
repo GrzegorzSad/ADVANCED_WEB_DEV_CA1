@@ -37,8 +37,8 @@ Route::get('/index', function () {
 })->name('index');
 
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
-Route::get('/songs/create', [SongController::class, 'create']);
-Route::post('/songs', [SongController::class, 'store']);
+Route::get('/songs/create', [SongController::class, 'create'])->name('songs.create');
+Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
 Route::get('/songs/{song}', [SongController::class, 'show'])->name('songs.show');
 Route::get('/songs/{song}/edit', [SongController::class, 'edit']);
 Route::put('/songs/{song}', [SongController::class, 'update']);

@@ -15,13 +15,24 @@ class SongController extends Controller
 
     public function create()
     {
-        // Logic to show a form to create a new song
+        return view('song.create');
     }
 
     public function store(Request $request)
     {
-        // Logic to store a new song in the database
+        $validatedData = $request->validate([
+            // 'playlist_id' => 'required|exists:playlists,id',
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'artist' => 'required|string|max:255',
+        ]);
+
+        // Create and save the song record
+        $newSong = Song::create($validatedData);
+
+        return redirect('/songs/' . $newSong->id)->with('success', 'Song created successfully');
     }
+    
 
     public function show(Song $song)
     {
