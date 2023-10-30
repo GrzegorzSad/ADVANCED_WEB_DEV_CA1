@@ -21,7 +21,6 @@ class SongController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            // 'playlist_id' => 'required|exists:playlists,id',
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'artist' => 'required|string|max:255',
@@ -41,16 +40,27 @@ class SongController extends Controller
 
     public function edit(Song $song)
     {
-        // Logic to show a form to edit an existing song
+        return view('song.edit', compact('song'));
     }
 
     public function update(Request $request, Song $song)
-    {
-        // Logic to update an existing song in the database
-    }
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'category' => 'required|string|max:255',
+        'artist' => 'required|string|max:255',
+    ]);
+
+    $song->update($validatedData);
+
+    return redirect()->route('songs.show', $song->id)->with('success', 'Song updated successfully');
+}
 
     public function destroy(Song $song)
     {
-        // Logic to delete a song from the database
+        $song->delete();
+
+        return redirect()->route('songs.index')->with('success', 'Song deleted successfully');
     }
+
 }

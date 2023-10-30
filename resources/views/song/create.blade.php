@@ -27,13 +27,6 @@
             class="w-full mt-6"
             :value="old('artist')"></x-text-input>
 
-        <x-text-area
-            name="description" 
-            field="description"
-            placeholder="Description..."
-            class="w-full mt-6"
-            :value="old('description')"></x-text-area>
-
         <x-primary-button class="mt-6">Save Song</x-primary-button>
     </form>
 </x-app-layout>
