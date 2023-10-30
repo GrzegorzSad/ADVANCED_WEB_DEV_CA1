@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             AlbumSeeder::class,
             SongSeeder::class,
             PlaylistSeeder::class,
-            // Add other seeders here
+            PlaylistSongSeeder::class,
         ]);
     }
 }

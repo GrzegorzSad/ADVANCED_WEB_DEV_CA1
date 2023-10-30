@@ -12,7 +12,8 @@ return new class extends Migration
     public function up()
 {
     Schema::create('songs', function (Blueprint $table) {
-        $table->unsignedBigInteger('playlist_id');
+        $table->unsignedBigInteger('playlist_id')->nullable();
+        $table->unsignedBigInteger('album_id')->nullable();
         $table->id();
         $table->string('name');
         $table->string('category');
