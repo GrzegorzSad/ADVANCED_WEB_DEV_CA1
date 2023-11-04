@@ -43,6 +43,8 @@ Route::get('/songs/{song}', [SongController::class, 'show'])->name('songs.show')
 Route::get('/songs/{song}/edit', [SongController::class, 'edit'])->name('songs.edit');;
 Route::put('/songs/{song}', [SongController::class, 'update'])->name('songs.update');
 Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
+Route::get('/songs/{song}/add-to-playlist', [SongController::class, 'addToPlaylist'])->name('songs.addToPlaylist');
+Route::post('/songs/{song}/add-to-playlist', [SongController::class, 'addSongToPlaylist'])->name('songs.addSongToPlaylist');
 
 
 
@@ -62,6 +64,6 @@ Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('
 Route::get('/playlists/{playlist}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
 Route::put('/playlists/{playlist}', [PlaylistController::class, 'update'])->name('playlists.update');
 Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
-
+Route::delete('playlists/{playlist}/songs/{song}', [PlaylistController::class, 'detachSong'])->name('playlist.song.detach');
 
 require __DIR__.'/auth.php';

@@ -32,8 +32,8 @@ class PlaylistController extends Controller
 
         // Process image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images/playlists', 'public');
-            $validatedData['image_url'] = asset('storage/' . $imagePath);
+            $imagePath = $request->file('image')->store('public/images');
+            $validatedData['image_url'] = asset('storage/' . str_replace('public/', '', $imagePath));
         }
 
         // Set the creation_date to the current date and time
@@ -58,13 +58,28 @@ class PlaylistController extends Controller
     }
 
     public function update(Request $request, Playlist $playlist)
-    {
-        // Add validation for playlists here
+        {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'user' => 'required|string|max:255',
+                'description' => 'string|nullable',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation as needed
+            ]);
 
-        $playlist->update($validatedData);
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $imagePath = $request->file('image')->storeAs('public/images', $imageName);
 
-        return redirect()->route('playlists.show', $playlist->id)->with('success', 'Playlist updated successfully');
-    }
+                // Update the playlist with the new image path
+                $playlist->image_url = 'storage/images/' . $imageName;
+                $playlist->save();
+            }
+
+            // Update the other playlist fields
+            $playlist->update($request->only('title', 'user', 'description'));
+
+            return redirect()->route('playlists.show', $playlist->id)->with('success', 'Playlist updated successfully');
+        }
 
     public function destroy(Playlist $playlist)
     {
@@ -72,4 +87,11 @@ class PlaylistController extends Controller
 
         return redirect()->route('playlists.index')->with('success', 'Playlist deleted successfully');
     }
+
+    public function detachSong(Playlist $playlist, Song $song)
+{
+    $playlist->songs()->detach($song);
+
+    return redirect()->route('playlists.edit', $playlist->id)->with('success', 'Song removed from playlist');
+}
 }

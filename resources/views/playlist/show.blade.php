@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if ($playlist->image_url)
-                        <img src="{{ $playlist->image_url }}" alt="Playlist Image">
+                        <img src="{{ asset($playlist->image_url) }}" alt="Playlist Image">
                     @endif
                     <p>Title: {{ $playlist->title }}</p>
                     <p>Creator: {{ $playlist->user }}</p>

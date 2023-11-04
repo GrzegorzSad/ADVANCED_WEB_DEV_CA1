@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Song;
+use App\Models\Playlist;
 
 class SongController extends Controller
 {
@@ -61,6 +62,27 @@ class SongController extends Controller
         $song->delete();
 
         return redirect()->route('songs.index')->with('success', 'Song deleted successfully');
+    }
+
+    public function addToPlaylist(Song $song)
+    {
+        $playlists = Playlist::all();
+        return view('song.addToPlaylist', compact('song', 'playlists'));
+    }
+
+    public function addSongToPlaylist(Request $request, Song $song)
+    {
+        $request->validate([
+            'playlist_id' => 'required|exists:playlists,id',
+        ]);
+
+        $playlist = Playlist::find($request->playlist_id);
+
+        if ($playlist) {
+            $playlist->songs()->attach($song);
+        }
+
+        return redirect()->route('songs.show', $song->id)->with('success', 'Song added to the playlist successfully.');
     }
 
 }
