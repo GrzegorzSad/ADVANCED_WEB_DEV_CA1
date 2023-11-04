@@ -16,11 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('albums.index')" :active="request()->routeIs('albums.index')">
                         {{ __('Albums') }}
                     </x-nav-link>
-                </div> -->
+                </div> 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('albums.create')" :active="request()->routeIs('albums.create')">
+                        {{ __('Create Album') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('songs.index')" :active="request()->routeIs('songs.index')">
                         {{ __('Songs') }}
@@ -31,11 +36,16 @@
                         {{ __('Create Song') }}
                     </x-nav-link>
                 </div>
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('playlists.index')" :active="request()->routeIs('playlists.index')">
                         {{ __('Playlists') }}
                     </x-nav-link>
-                </div> -->
+                </div> 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('playlists.create')" :active="request()->routeIs('playlists.create')">
+                        {{ __('Create Playlist') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

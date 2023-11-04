@@ -17,7 +17,7 @@ return new class extends Migration
         $table->string('user');
         $table->text('description')->nullable();
         $table->string('image_url')->nullable();
-        $table->date('creation_date');
+        $table->date('creation_date')->default(now()); // Set a default value
         $table->timestamps();
     });
 }

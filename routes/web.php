@@ -47,19 +47,21 @@ Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('songs.
 
 
 Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
-Route::get('/albums/create', [AlbumController::class, 'create']);
-Route::post('/albums', [AlbumController::class, 'store']);
+Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
+Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
-Route::get('/albums/{album}/edit', [AlbumController::class, 'edit']);
-Route::put('/albums/{album}', [AlbumController::class, 'update']);
-Route::delete('/albums/{album}', [AlbumController::class, 'destroy']);
+Route::get('/albums/{album}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
+Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
+Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
+
 
 Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlists.index');
-Route::get('/playlists/create', [PlaylistController::class, 'create']);
-Route::post('/playlists', [PlaylistController::class, 'store']);
+Route::get('/playlists/create', [PlaylistController::class, 'create'])->name('playlists.create');
+Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
-Route::get('/playlists/{playlist}/edit', [PlaylistController::class, 'edit']);
-Route::put('/playlists/{playlist}', [PlaylistController::class, 'update']);
-Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy']);
+Route::get('/playlists/{playlist}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
+Route::put('/playlists/{playlist}', [PlaylistController::class, 'update'])->name('playlists.update');
+Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
+
 
 require __DIR__.'/auth.php';

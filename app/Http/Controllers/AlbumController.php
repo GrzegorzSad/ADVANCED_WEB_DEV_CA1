@@ -9,37 +9,48 @@ class AlbumController extends Controller
 {
     public function index()
     {
-        $albums = Album::all(); // Retrieve songs from the database
+        $albums = Album::all(); // Retrieve albums from the database
         return view('albums', ['albums' => $albums]);
     }
 
     public function create()
     {
-        // Logic to show a form to create a new album
+        return view('album.create');
     }
 
     public function store(Request $request)
     {
-        // Logic to store a new album in the database
+        // Add validation for albums here
+
+        // Create and save the album record
+        $newAlbum = Album::create($validatedData);
+
+        return redirect('/albums/' . $newAlbum->id)->with('success', 'Album created successfully');
     }
 
     public function show(Album $album)
     {
-        return view('album.show', ['album' =>$album]);
+        return view('album.show', ['album' => $album]);
     }
 
     public function edit(Album $album)
     {
-        // Logic to show a form to edit an existing album
+        return view('album.edit', compact('album'));
     }
 
     public function update(Request $request, Album $album)
     {
-        // Logic to update an existing album in the database
+        // Add validation for albums here
+
+        $album->update($validatedData);
+
+        return redirect()->route('albums.show', $album->id)->with('success', 'Album updated successfully');
     }
 
     public function destroy(Album $album)
     {
-        // Logic to delete an album from the database
+        $album->delete();
+
+        return redirect()->route('albums.index')->with('success', 'Album deleted successfully');
     }
 }
