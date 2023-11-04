@@ -16,10 +16,7 @@ class PlaylistController extends Controller
 
     public function create()
     {
-        // Fetch a list of available songs
-        $songOptions = Song::all();
-
-        return view('playlist.create', ['songOptions' => $songOptions]);
+        return view('playlist.create');
     }
 
     public function store(Request $request)

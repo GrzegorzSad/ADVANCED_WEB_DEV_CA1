@@ -38,14 +38,6 @@
 
                     <input type="file" name="image" class="w-full mt-6">
 
-                    <h2>Add Songs to Playlist</h2>
-                    <x-select-input
-                        name="songs[]"
-                        :options="$songOptions"
-                        class="w-full mt-2"
-                        multiple="multiple"
-                    ></x-select-input>
-
                     <div>
                         <x-primary-button class="mt-6">Create Playlist</x-primary-button>
                     </div>
