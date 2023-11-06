@@ -9,6 +9,14 @@ class Album extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', // Add 'name' to the $fillable property
+        'artist',
+        'description',
+        'image_url',
+        'release_date',
+    ];
+
 
 public function songs()
     {

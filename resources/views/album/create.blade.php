@@ -1,30 +1,33 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Create Album') }}
+        </h2>
+    </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                <form action="{{ route('playlists.store') }}" method="post" enctype="multipart/form-data">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <form action="{{ route('albums.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-
-                    <input type="hidden" name="creation_date" value="{{ now() }}">
 
                     <x-text-input
                         type="text"
-                        name="title"
-                        field="title"
-                        placeholder="Playlist Title"
+                        name="name"
+                        field="name"
+                        placeholder="Album Name"
                         class="w-full"
                         autocomplete="off"
-                        :value="old('title')"
+                        :value="old('name')"
                     ></x-text-input>
 
                     <x-text-input
                         type="text"
-                        name="user"
-                        field="user"
-                        placeholder="User..."
+                        name="artist"
+                        field="artist"
+                        placeholder="Artist..."
                         class="w-full mt-6"
-                        :value="old('user')"
+                        :value="old('artist')"
                     ></x-text-input>
 
                     <x-text-area
@@ -38,11 +41,13 @@
 
                     <input type="file" name="image" class="w-full mt-6">
 
+                    <label for="release_date">Release Date:</label>
+                        <input type="date" id="release_date" name="release_date" value="{{ $album->release_date ?? '' }}">
+
                     <div>
-                        <x-primary-button class="mt-6">Create Playlist</x-primary-button>
+                        <x-primary-button class="mt-6">Create Album</x-primary-button>
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>

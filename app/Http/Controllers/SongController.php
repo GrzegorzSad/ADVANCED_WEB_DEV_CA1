@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Song;
 use App\Models\Playlist;
+use App\Models\Album;
 
 class SongController extends Controller
 {
@@ -83,6 +84,27 @@ class SongController extends Controller
         }
 
         return redirect()->route('songs.show', $song->id)->with('success', 'Song added to the playlist successfully.');
+    }
+
+    public function addToAlbum(Song $song)
+    {
+        $albums = Album::all();
+        return view('song.addToAlbum', compact('song', 'albums'));
+    }
+
+    public function addSongToAlbum(Request $request, Song $song)
+    {
+        $request->validate([
+            'album_id' => 'required|exists:albums,id',
+        ]);
+
+        $album = Album::find($request->album_id);
+
+        if ($album) {
+            $album->songs()->save($song);
+        }
+
+        return redirect()->route('songs.show', $song->id)->with('success', 'Song added to the album successfully.');
     }
 
 }

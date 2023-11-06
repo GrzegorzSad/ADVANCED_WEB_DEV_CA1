@@ -19,7 +19,7 @@
                     <p>Creation Date: {{ $playlist->creation_date }}</p>
 
                     <!-- Displaying songs in the playlist -->
-                    <h2>Songs in This Playlist</h2>
+                    <h2>Songs in This Playlist:</h2>
                     <ul>
                         @forelse ($playlist->songs as $song)
                             <li>{{ $song->name }}</li>
@@ -47,6 +47,7 @@
                     @csrf
                     @method('DELETE')
                 </form>
+                <br>
             </div>
         </div>
     </div>

@@ -45,7 +45,8 @@ Route::put('/songs/{song}', [SongController::class, 'update'])->name('songs.upda
 Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
 Route::get('/songs/{song}/add-to-playlist', [SongController::class, 'addToPlaylist'])->name('songs.addToPlaylist');
 Route::post('/songs/{song}/add-to-playlist', [SongController::class, 'addSongToPlaylist'])->name('songs.addSongToPlaylist');
-
+Route::get('/songs/{song}/add-to-album', [SongController::class, 'addToAlbum'])->name('songs.addToAlbum');
+Route::post('/songs/{song}/add-to-album', [SongController::class, 'addSongToAlbum'])->name('songs.addSongToAlbum');
 
 
 Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
@@ -55,6 +56,8 @@ Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.sh
 Route::get('/albums/{album}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
 Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
 Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
+Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
+Route::delete('albums/{album}/songs/{song}', [AlbumController::class, 'detachSong'])->name('album.song.detach');
 
 
 Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlists.index');

@@ -30,14 +30,14 @@
                         :value="$playlist->user"
                     ></x-text-input>
                 
-                    <x-text-input
+                    <x-text-area
                         type="text"
                         name="description"
                         field="description"
                         placeholder="Description..."
                         class="w-full mt-6"
                         :value="$playlist->description"
-                    ></x-text-input>
+                    ></x-text-area>
                 
                     <input type="file" name="image" id="image" class="w-full mt-6">
 

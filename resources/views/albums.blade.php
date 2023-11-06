@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Songs') }}
+            {{ __('Albums') }}
         </h2>
     </x-slot>
 
@@ -9,14 +9,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{-- {{ __("You're logged in!") }} --}}
-                    @foreach ($songs as $song)
-                        <li>
-                            <a href="{{ route('songs.show', ['song' => $song]) }}">
-                                {{ $song->name }}
-                            </a>
-                        </li>
-                    @endforeach
+                    <ul>
+                        @foreach($albums as $album)
+                            <li>
+                                <strong>Album Name: </strong>
+                                <a class="font-weight: bold;" href="{{ route('albums.show', ['album' => $album]) }}">
+                                    {{ $album->name }}
+                                </a>
+                            </li>
+                            <li>
+                                <strong>Artist: </strong>{{ $album->artist }}
+                            </li>
+                            <br>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

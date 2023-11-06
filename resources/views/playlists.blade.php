@@ -12,12 +12,11 @@
                     <ul>
                         @foreach($playlists as $playlist)
                             <li>
-                                <strong>Playlist Title: </strong>
-                                <a class="font-weight: bold;" href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
+                                <a href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
                                     {{ $playlist->title }}
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <strong>Songs:</strong>
                                 <ul>
                                     @foreach ($playlist->songs as $song)
@@ -29,7 +28,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <br>
+                            <br> --}}
                         @endforeach
                     </ul>
                 </div>

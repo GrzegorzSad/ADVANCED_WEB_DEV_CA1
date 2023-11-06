@@ -45,6 +45,9 @@
                     <x-primary-button class="mt-6">
                         <a href="{{ route('songs.addToPlaylist', $song->id) }}">Add to Playlist</a>
                     </x-primary-button>
+                    <x-primary-button class="mt-6">
+                        <a href="{{ route('songs.addToAlbum', $song->id) }}">Add to Album</a>
+                    </x-primary-button>
                 </div>
 
                 <x-primary-button href="{{ route('songs.destroy', $song->id) }}"
