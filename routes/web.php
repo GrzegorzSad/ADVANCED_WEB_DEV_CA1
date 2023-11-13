@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SongController;
-use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\PlaylistController;
-use App\Http\Controllers\ShowSongController;
+
+use App\Http\Controllers\Admin\SongController as AdminSongController;
+use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
+use App\Http\Controllers\Admin\PlaylistController as AdminPlaylistController;
+
+use App\Http\Controllers\User\SongController as UserSongController;
+use App\Http\Controllers\User\AlbumController as UserAlbumController;
+use App\Http\Controllers\User\PlaylistController as UserPlaylistController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,37 +41,46 @@ Route::get('/index', function () {
     return view('index');
 })->name('index');
 
-Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
-Route::get('/songs/create', [SongController::class, 'create'])->name('songs.create');
-Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
-Route::get('/songs/{song}', [SongController::class, 'show'])->name('songs.show');
-Route::get('/songs/{song}/edit', [SongController::class, 'edit'])->name('songs.edit');;
-Route::put('/songs/{song}', [SongController::class, 'update'])->name('songs.update');
-Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
-Route::get('/songs/{song}/add-to-playlist', [SongController::class, 'addToPlaylist'])->name('songs.addToPlaylist');
-Route::post('/songs/{song}/add-to-playlist', [SongController::class, 'addSongToPlaylist'])->name('songs.addSongToPlaylist');
-Route::get('/songs/{song}/add-to-album', [SongController::class, 'addToAlbum'])->name('songs.addToAlbum');
-Route::post('/songs/{song}/add-to-album', [SongController::class, 'addSongToAlbum'])->name('songs.addSongToAlbum');
+Route::get('/admin/songs', [AdminSongController::class, 'index'])->middleware(['auth'])->name('admin.songs.index');
+Route::get('/admin/songs/create', [AdminSongController::class, 'create'])->middleware(['auth'])->name('admin.songs.create');
+Route::post('/admin/songs', [AdminSongController::class, 'store'])->middleware(['auth'])->name('admin.songs.store');
+Route::get('/admin/songs/{song}', [AdminSongController::class, 'show'])->middleware(['auth'])->name('admin.songs.show');
+Route::get('/admin/songs/{song}/edit', [AdminSongController::class, 'edit'])->middleware(['auth'])->name('admin.songs.edit');;
+Route::put('/admin/songs/{song}', [AdminSongController::class, 'update'])->middleware(['auth'])->name('admin.songs.update');
+Route::delete('/admin/songs/{song}', [AdminSongController::class, 'destroy'])->middleware(['auth'])->name('admin.songs.destroy');
+Route::get('/admin/songs/{song}/add-to-playlist', [AdminSongController::class, 'addToPlaylist'])->middleware(['auth'])->name('admin.songs.addToPlaylist');
+Route::post('/admin/songs/{song}/add-to-playlist', [AdminSongController::class, 'addSongToPlaylist'])->middleware(['auth'])->name('admin.songs.addSongToPlaylist');
+Route::get('/admin/songs/{song}/add-to-album', [AdminSongController::class, 'addToAlbum'])->middleware(['auth'])->name('admin.songs.addToAlbum');
+Route::post('/admin/songs/{song}/add-to-album', [AdminSongController::class, 'addSongToAlbum'])->middleware(['auth'])->name('admin.songs.addSongToAlbum');
 
 
-Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
-Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
-Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
-Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
-Route::get('/albums/{album}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
-Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
-Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
-Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
-Route::delete('albums/{album}/songs/{song}', [AlbumController::class, 'detachSong'])->name('album.song.detach');
+Route::get('/admin/albums', [AdminAlbumController::class, 'index'])->middleware(['auth'])->name('admin.albums.index');
+Route::get('/admin/albums/create', [AdminAlbumController::class, 'create'])->middleware(['auth'])->name('admin.albums.create');
+Route::post('/admin/albums', [AdminAlbumController::class, 'store'])->middleware(['auth'])->name('admin.albums.store');
+Route::get('/admin/albums/{album}', [AdminAlbumController::class, 'show'])->middleware(['auth'])->name('admin.albums.show');
+Route::get('/admin/albums/{album}/edit', [AdminAlbumController::class, 'edit'])->middleware(['auth'])->name('admin.albums.edit');
+Route::put('/admin/albums/{album}', [AdminAlbumController::class, 'update'])->middleware(['auth'])->name('admin.albums.update');
+Route::delete('/admin/albums/{album}', [AdminAlbumController::class, 'destroy'])->middleware(['auth'])->name('admin.albums.destroy');
+Route::delete('/admin/albums/{album}', [AdminAlbumController::class, 'destroy'])->middleware(['auth'])->name('admin.albums.destroy');
+Route::delete('/admin/albums/{album}/songs/{song}', [AdminAlbumController::class, 'detachSong'])->middleware(['auth'])->name('admin.album.song.detach');
 
 
-Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlists.index');
-Route::get('/playlists/create', [PlaylistController::class, 'create'])->name('playlists.create');
-Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
-Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
-Route::get('/playlists/{playlist}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
-Route::put('/playlists/{playlist}', [PlaylistController::class, 'update'])->name('playlists.update');
-Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
-Route::delete('playlists/{playlist}/songs/{song}', [PlaylistController::class, 'detachSong'])->name('playlist.song.detach');
+Route::get('/admin/playlists', [AdminPlaylistController::class, 'index'])->middleware(['auth'])->name('admin.playlists.index');
+Route::get('/admin/playlists/create', [AdminPlaylistController::class, 'create'])->middleware(['auth'])->name('admin.playlists.create');
+Route::post('/admin/playlists', [AdminPlaylistController::class, 'store'])->middleware(['auth'])->name('admin.playlists.store');
+Route::get('/admin/playlists/{playlist}', [AdminPlaylistController::class, 'show'])->middleware(['auth'])->name('admin.playlists.show');
+Route::get('/admin/playlists/{playlist}/edit', [AdminPlaylistController::class, 'edit'])->middleware(['auth'])->name('admin.playlists.edit');
+Route::put('/admin/playlists/{playlist}', [AdminPlaylistController::class, 'update'])->middleware(['auth'])->name('admin.playlists.update');
+Route::delete('/admin/playlists/{playlist}', [AdminPlaylistController::class, 'destroy'])->middleware(['auth'])->name('admin.playlists.destroy');
+Route::delete('/admin/playlists/{playlist}/songs/{song}', [AdminPlaylistController::class, 'detachSong'])->middleware(['auth'])->name('admin.playlist.song.detach');
 
+
+Route::get('/user/songs', [UserSongController::class, 'index'])->name('user.songs.index');
+Route::get('/user/songs/{song}', [UserSongController::class, 'show'])->name('user.songs.show');
+
+Route::get('/user/albums', [UserAlbumController::class, 'index'])->name('user.albums.index');
+Route::get('/user/albums/{album}', [UserAlbumController::class, 'show'])->name('user.albums.show');
+
+Route::get('/user/playlists', [UserPlaylistController::class, 'index'])->name('user.playlists.index');
+Route::get('/user/playlists/{playlist}', [UserPlaylistController::class, 'show'])->name('user.playlists.show');
 require __DIR__.'/auth.php';

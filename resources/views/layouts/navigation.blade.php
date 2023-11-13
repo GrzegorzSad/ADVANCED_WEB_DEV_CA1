@@ -17,32 +17,32 @@
                     </x-nav-link>
                 </div>
                  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('albums.index')" :active="request()->routeIs('albums.index')">
+                    <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('albums.index')">
                         {{ __('Albums') }}
                     </x-nav-link>
                 </div> 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('albums.create')" :active="request()->routeIs('albums.create')">
+                    <x-nav-link :href="route('admin.albums.create')" :active="request()->routeIs('albums.create')">
                         {{ __('Create Album') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('songs.index')" :active="request()->routeIs('songs.index')">
+                    <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('songs.index')">
                         {{ __('Songs') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('songs.create')" :active="request()->routeIs('songs.create')">
+                    <x-nav-link :href="route('admin.songs.create')" :active="request()->routeIs('songs.create')">
                         {{ __('Create Song') }}
                     </x-nav-link>
                 </div>
                  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('playlists.index')" :active="request()->routeIs('playlists.index')">
+                    <x-nav-link :href="route('admin.playlists.index')" :active="request()->routeIs('playlists.index')">
                         {{ __('Playlists') }}
                     </x-nav-link>
                 </div> 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('playlists.create')" :active="request()->routeIs('playlists.create')">
+                    <x-nav-link :href="route('admin.playlists.create')" :active="request()->routeIs('playlists.create')">
                         {{ __('Create Playlist') }}
                     </x-nav-link>
                 </div>
