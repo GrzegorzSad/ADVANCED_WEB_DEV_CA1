@@ -32,7 +32,7 @@
                     {{-- {{ __("You're logged in!") }} --}}
                     @foreach ($songs as $song)
                         <li>
-                            <a href="{{ route('songs.show', ['song' => $song]) }}">
+                            <a href="{{ route('admin.songs.show', ['song' => $song]) }}">
                                 {{ $song->name }}
                             </a>
                         </li>

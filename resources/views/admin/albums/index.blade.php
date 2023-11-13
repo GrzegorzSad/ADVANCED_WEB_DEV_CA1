@@ -13,7 +13,7 @@
                         @foreach($albums as $album)
                             <li>
                                 <strong>Album Name: </strong>
-                                <a class="font-weight: bold;" href="{{ route('albums.show', ['album' => $album]) }}">
+                                <a class="font-weight: bold;" href="{{ route('admin.albums.show', ['album' => $album]) }}">
                                     {{ $album->name }}
                                 </a>
                             </li>

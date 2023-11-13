@@ -14,10 +14,10 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form
                     @if(isset($song))
-                        action="{{ route('songs.update', $song->id) }}"
+                        action="{{ route('admin.songs.update', $song->id) }}"
                         method="post"
                     @else
-                        action="{{ route('songs.store') }}"
+                        action="{{ route('admin.songs.store') }}"
                         method="post"
                     @endif
                     enctype="multipart/form-data">

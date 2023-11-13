@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <form action="{{ route('albums.update', $album->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.albums.update', $album->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -59,7 +59,7 @@
                                 @foreach ($album->songs as $song)
                                     <li>
                                         {{ $song->name }}
-                                        <form action="{{ route('album.song.detach', ['album' => $album, 'song' => $song]) }}" method="post">
+                                        <form action="{{ route('admin.album.song.detach', ['album' => $album, 'song' => $song]) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600">Remove</button>

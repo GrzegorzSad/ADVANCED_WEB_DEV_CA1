@@ -12,7 +12,7 @@
                     <ul>
                         @foreach($playlists as $playlist)
                             <li>
-                                <a href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
+                                <a href="{{ route('admin.playlists.show', ['playlist' => $playlist]) }}">
                                     {{ $playlist->title }}
                                 </a>
                             </li>
