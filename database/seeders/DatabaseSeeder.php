@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\AlbumSeeder;
 use Database\Seeders\SongSeeder;
 use Database\Seeders\PlaylistSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,11 +19,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
         $this->call([
             AlbumSeeder::class,
             SongSeeder::class,
             PlaylistSeeder::class,
             PlaylistSongSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

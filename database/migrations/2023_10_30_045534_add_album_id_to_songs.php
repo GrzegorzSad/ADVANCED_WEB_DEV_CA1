@@ -10,12 +10,13 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('songs', function (Blueprint $table) {
-        $table->unsignedBigInteger('album_id');
-        $table->foreign('album_id')->references('id')->on('albums');
-    });
-}
+    {
+        if (!Schema::hasColumn('songs', 'album_id')) {
+            Schema::table('songs', function (Blueprint $table) {
+                $table->bigInteger('album_id')->unsigned()->nullable();
+            });
+        }
+    }
 
     /**
      * Reverse the migrations.
