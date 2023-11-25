@@ -9,44 +9,63 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
-
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.albums.index')">
-                        {{ __('Albums') }}
-                    </x-nav-link>
-                </div> 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.albums.create')" :active="request()->routeIs('admin.albums.create')">
-                        {{ __('Create Album') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
-                        {{ __('Songs') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.songs.create')" :active="request()->routeIs('admin.songs.create')">
-                        {{ __('Create Song') }}
-                    </x-nav-link>
-                </div>
-                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.playlists.index')" :active="request()->routeIs('admin.playlists.index')">
-                        {{ __('Playlists') }}
-                    </x-nav-link>
-                </div> 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.playlists.create')" :active="request()->routeIs('admin.playlists.create')">
-                        {{ __('Create Playlist') }}
-                    </x-nav-link>
-                </div>
-            </div>
+                
+                @if(auth()->user()->hasRole('admin'))
+                    <!-- Admin Links -->
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.albums.index')" :active="request()->routeIs('admin.albums.index')">
+                            {{ __('Albums') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.albums.create')" :active="request()->routeIs('admin.albums.create')">
+                            {{ __('Create Album') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
+                            {{ __('Songs') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.songs.create')" :active="request()->routeIs('admin.songs.create')">
+                            {{ __('Create Song') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.playlists.index')" :active="request()->routeIs('admin.playlists.index')">
+                            {{ __('Playlists') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.playlists.create')" :active="request()->routeIs('admin.playlists.create')">
+                            {{ __('Create Playlist') }}
+                        </x-nav-link>
+                    </div>
+                @elseif(auth()->user()->hasRole('user'))
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('user.albums.index')" :active="request()->routeIs('user.albums.index')">
+                            {{ __('Albums') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('user.songs.index')" :active="request()->routeIs('user.songs.index')">
+                            {{ __('Songs') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('user.playlists.index')" :active="request()->routeIs('user.playlists.index')">
+                            {{ __('Playlists') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">

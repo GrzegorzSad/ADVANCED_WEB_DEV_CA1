@@ -40,11 +40,6 @@
                                 <p>
                                     Welcome To  The Music App
                                 </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+              </div>
     </body>
 </html>

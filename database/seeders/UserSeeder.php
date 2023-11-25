@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Greg';
         $admin->email = 'greg@example.com';
-        $admin->password = Hash::make('password');
+        $admin->password = 'password'; //Hash::make('password');
         $admin->save();
 
         $admin->roles()->attach($role_admin);
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = 'Joe';
         $user->email = 'joe@example.com';
-        $user->password = Hash::make('password');
+        $user->password = 'password'; //Hash::make('password');
         $user->save();
 
         $user->roles()->attach($role_user);
