@@ -10,25 +10,23 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <ul>
-                        @foreach($playlists as $playlist)
+                        @foreach($userPlaylists as $playlist)
                             <li>
                                 <a href="{{ route('user.playlists.show', ['playlist' => $playlist]) }}">
                                     {{ $playlist->title }}
                                 </a>
                             </li>
-                            {{-- <li>
-                                <strong>Songs:</strong>
-                                <ul>
-                                    @foreach ($playlist->songs as $song)
-                                        <li>
-                                            <a href="{{ route('songs.show', ['song' => $song]) }}">
-                                                {{ $song->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                        @endforeach
+                    </ul>
+                    
+                    <h2>Other Users' Playlists:</h2>
+                    <ul>
+                        @foreach($otherUsersPlaylists as $playlist)
+                            <li>
+                                <a href="{{ route('user.playlists.show', ['playlist' => $playlist]) }}">
+                                    {{ $playlist->title }}
+                                </a>
                             </li>
-                            <br> --}}
                         @endforeach
                     </ul>
                 </div>

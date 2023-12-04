@@ -82,5 +82,15 @@ Route::get('/user/albums', [UserAlbumController::class, 'index'])->name('user.al
 Route::get('/user/albums/{album}', [UserAlbumController::class, 'show'])->name('user.albums.show');
 
 Route::get('/user/playlists', [UserPlaylistController::class, 'index'])->name('user.playlists.index');
+Route::get('/user/playlists/create', [UserPlaylistController::class, 'create'])->name('user.playlists.create');
+Route::post('/user/playlists', [UserPlaylistController::class, 'store'])->name('user.playlists.store');
 Route::get('/user/playlists/{playlist}', [UserPlaylistController::class, 'show'])->name('user.playlists.show');
+Route::get('/user/playlists/{playlist}/edit', [UserPlaylistController::class, 'edit'])->name('user.playlists.edit');
+Route::put('/user/playlists/{playlist}', [UserPlaylistController::class, 'update'])->name('user.playlists.update');
+Route::delete('/user/playlists/{playlist}', [UserPlaylistController::class, 'destroy'])->name('user.playlists.destroy');
+Route::delete('/user/playlists/{playlist}/songs/{song}', [UserPlaylistController::class, 'detachSong'])->name('user.playlist.song.detach');
+
 require __DIR__.'/auth.php';
+
+
+ 

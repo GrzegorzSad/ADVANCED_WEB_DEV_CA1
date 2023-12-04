@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate; // Add this line
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,14 +14,18 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        \App\Models\Playlist::class => \App\Policies\PlaylistPolicy::class,
+        
     ];
 
     /**
      * Register any authentication / authorization services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('update-playlist', [PlaylistPolicy::class, 'update']);
+        // Add other gates if needed
     }
 }

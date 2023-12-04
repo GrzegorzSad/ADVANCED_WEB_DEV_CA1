@@ -65,6 +65,11 @@
                             {{ __('Playlists') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('user.playlists.create')" :active="request()->routeIs('user.playlists.create')">
+                            {{ __('Create Playlist') }}
+                        </x-nav-link>
+                    </div>
                     @endif
 
             <!-- Settings Dropdown -->
