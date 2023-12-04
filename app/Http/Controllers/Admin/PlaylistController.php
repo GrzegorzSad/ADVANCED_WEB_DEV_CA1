@@ -12,46 +12,43 @@ class PlaylistController extends Controller
 {
     public function index()
     {
-        
-        $user= Auth::user();
+        $user = Auth::user();
         $user->authorizeRoles('admin');
-        
-        $playlists = Playlist::all();
+
+        $playlists = $user->playlists; // Fetch playlists associated with the authenticated user
         return view('admin.playlists.index', ['playlists' => $playlists]);
     }
 
     public function create()
     {
-        
-        $user= Auth::user();
+        $user = Auth::user();
         $user->authorizeRoles('admin');
-        
+
         return view('admin.playlists.create');
     }
 
     public function store(Request $request)
     {
-        
-        $user= Auth::user();
+        $user = Auth::user();
         $user->authorizeRoles('admin');
-        
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'user' => 'required|string|max:255',
             'description' => 'string|nullable',
             'image' => 'image|nullable',
         ]);
 
+        // Associate the playlist with the authenticated user
+        $newPlaylist = $user->playlists()->create($validatedData);
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
-            $validatedData['image_url'] = asset('storage/' . str_replace('public/', '', $imagePath));
+            $newPlaylist->image_url = asset('storage/' . str_replace('public/', '', $imagePath));
+            $newPlaylist->save();
         }
-
-        $newPlaylist = Playlist::create($validatedData);
 
         return redirect('/admin/playlists/' . $newPlaylist->id)->with('success', 'Playlist created successfully');
     }
-
     public function show(Playlist $playlist)
     {
         

@@ -18,14 +18,14 @@
                         :value="old('title')"
                     ></x-text-input>
 
-                    <x-text-input
+                    {{-- <x-text-input
                         type="text"
                         name="user"
                         field="user"
                         placeholder="User..."
                         class="w-full mt-6"
                         :value="old('user')"
-                    ></x-text-input>
+                    ></x-text-input> --}}
 
                     <x-text-area
                         type="text"

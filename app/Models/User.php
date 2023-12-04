@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return null !== $this->roles()->whereIn('name', $roles)->first();
     }
+
+    public function playlists()
+    {
+        return $this->hasMany(Playlist::class);
+    }
 }

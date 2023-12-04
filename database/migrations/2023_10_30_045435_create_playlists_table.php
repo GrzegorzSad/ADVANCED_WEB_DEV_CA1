@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('playlists', function (Blueprint $table) {
         $table->id();
         $table->string('title');
-        $table->string('user');
+        $table->string('user_id');
         $table->text('description')->nullable();
         $table->string('image_url')->nullable();
         $table->date('creation_date')->default(now()); // Set a default value

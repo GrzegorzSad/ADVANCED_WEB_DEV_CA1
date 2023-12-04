@@ -13,7 +13,7 @@
                         <img src="{{ asset($playlist->image_url) }}" alt="Playlist Image">
                     @endif
                     <p>Title: {{ $playlist->title }}</p>
-                    <p>Creator: {{ $playlist->user }}</p>
+                    <p>Creator: {{ $playlist->user->name }}</p>
                     <p>Description: {{ $playlist->description ?: 'N/A' }}</p>
                     
                     <p>Creation Date: {{ $playlist->creation_date }}</p>
