@@ -53,7 +53,7 @@
                                 @foreach ($playlist->songs as $song)
                                     <li>
                                         {{ $song->name }}
-                                        <form action="{{ route('admin.playlist.song.detach', ['playlist' => $playlist, 'song' => $song]) }}" method="post">
+                                        <form action="{{ route('user.playlist.song.detach', ['playlist' => $playlist, 'song' => $song]) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600">Remove</button>
