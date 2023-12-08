@@ -75,7 +75,6 @@ class PlaylistController extends Controller
         
         $request->validate([
             'title' => 'required|string|max:255',
-            'user' => 'required|string|max:255',
             'description' => 'string|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -84,7 +83,6 @@ class PlaylistController extends Controller
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $imagePath = $request->file('image')->storeAs('public/images', $imageName);
             $playlist->image_url = 'storage/images/' . $imageName;
-            $playlist->save();
         }
 
         $playlist->update($request->only('title', 'user', 'description'));
