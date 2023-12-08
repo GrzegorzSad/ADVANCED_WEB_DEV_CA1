@@ -33,6 +33,9 @@
                             <li>No playlists contain this song.</li>
                         @endforelse
                     </ul>
+                    <x-primary-button class="mt-6">
+                        <a href="{{ route('user.songs.addToPlaylist', $song->id) }}">Add to Playlist</a>
+                    </x-primary-button>
             </div>
         </div>
     </div>

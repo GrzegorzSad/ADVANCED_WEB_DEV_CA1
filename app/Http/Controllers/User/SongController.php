@@ -30,4 +30,36 @@ class SongController extends Controller
         
         return view('user.songs.show', ['song' => $song]);
     }
+
+    public function addToPlaylist(Song $song)
+    {
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        $playlists = $user->playlists;
+
+        return view('user.songs.addToPlaylist', compact('song', 'playlists'));
+    }
+
+    public function addSongToPlaylist(Request $request, Song $song)
+    {
+        
+        $user= Auth::user();
+        $user->authorizeRoles('user');
+        
+        $request->validate([
+            'playlist_id' => 'required|exists:playlists,id,user_id,' . $user->id,
+        ]);
+
+        $playlist = Playlist::find($request->playlist_id);
+
+        if ($playlist) {
+            $playlist->songs()->attach($song);
+        }
+
+        return redirect()->route('user.songs.show', $song->id)->with('success', 'Song added to the playlist successfully.');
+    }
+
+    
+
 }

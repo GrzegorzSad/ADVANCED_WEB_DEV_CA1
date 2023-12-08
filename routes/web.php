@@ -77,6 +77,8 @@ Route::delete('/admin/playlists/{playlist}/songs/{song}', [AdminPlaylistControll
 
 Route::get('/user/songs', [UserSongController::class, 'index'])->name('user.songs.index');
 Route::get('/user/songs/{song}', [UserSongController::class, 'show'])->name('user.songs.show');
+Route::get('/user/songs/{song}/add-to-playlist', [UserSongController::class, 'addToPlaylist'])->name('user.songs.addToPlaylist');
+Route::post('/user/songs/{song}/add-to-playlist', [UserSongController::class, 'addSongToPlaylist'])->name('user.songs.addSongToPlaylist');
 
 Route::get('/user/albums', [UserAlbumController::class, 'index'])->name('user.albums.index');
 Route::get('/user/albums/{album}', [UserAlbumController::class, 'show'])->name('user.albums.show');
