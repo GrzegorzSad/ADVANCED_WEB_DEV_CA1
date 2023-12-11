@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role; 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // Attach the "user" role to the new user
+        $userRole = Role::where('name', 'user')->first();
+        
+        if ($userRole) {
+            $user->roles()->attach($userRole);
+        }
 
         event(new Registered($user));
 
