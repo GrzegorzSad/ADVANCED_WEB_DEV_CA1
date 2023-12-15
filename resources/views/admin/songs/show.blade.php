@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if ($song->album)
-                        <img src="{{ $song->album->image_url }}">
+                        <img src="{{ asset($song->album->image_url) }}">
                     @endif
                     <p>Name: {{ $song->name }}</p>
                     <p>Category: {{ $song->category }}</p>
